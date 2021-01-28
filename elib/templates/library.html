@@ -1,0 +1,263 @@
+{% extends "base.html" %}
+{% load static %}
+{% load extras %}
+
+{% block content %}
+<!-- start of navbar -->
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container bottom-navbar-container">
+    <a class="navbar-brand" href="/"><img src="{% static 'img/msu-banner.png' %}" height="40px"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"><span
+        class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/staff">Staff</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/services">Services</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- end of navbar -->
+
+<!-- start of search filter -->
+
+  <!-- <div class="container search-form ">
+    <form class="form-inline" action="/>
+      <input class="form-control col-11" type="text" placeholder="Search for title, author, ISBN.."> 
+      <button type="submit" class="btn btn-primary ml-1">Search</button>
+    </form>
+  </div> -->
+
+<div class="container search-container">
+
+  <h3>Filter Books</h3>
+  <form method="GET">
+    <div class="form-row">
+        <div class="form-group col-12">
+            <div class="input-group">
+                <input class="form-control py-2 border-right-0 border" type="search" name="title_author" placeholder="Title or author" />
+                <span class="input-group-append">
+                    <div class="input-group-text bg-transparent">
+                        <i class="fa fa-search"></i>
+                    </div>
+                </span>
+            </div>
+        </div>        
+    </div>
+    <div class="form-row">
+        <div class="form-group col-6">
+            <div class="input-group">
+                <input class="form-control py-2 border-right-0 border" type="search" name="category" placeholder="Category" />
+                <span class="input-group-append">
+                    <div class="input-group-text bg-transparent">
+                        <i class="fa fa-search"></i>
+                    </div>
+                </span>
+            </div>
+        </div>
+        <div class="form-group col-6">
+          <div class="input-group">
+              <input class="form-control py-2 border-right-0 border" type="search" name="isbn" placeholder="ISBN (Exact)" />
+              <span class="input-group-append">
+                  <div class="input-group-text bg-transparent">
+                      <i class="fa fa-search"></i>
+                  </div>
+              </span>
+          </div>
+      </div>           
+    </div>
+    
+    <div class="form-row">
+      <div class="form-group col-xl-2 col-6">
+        <input type="number" min=0 class="form-control" id="viewCountMin" placeholder="Minimum Year" name="min_year">
+      </div>
+      <div class="form-group col-xl-2 col-6">
+        <input type="number" min=0 class="form-control" id="viewCountMax" placeholder="Maximum Year" name="max_year">
+      </div>
+
+      <div class="form-group col-lg-4 ml-3">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="available" name="file_available">
+          <label class="form-check-label" for="available">
+            Available Online
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="unavailable" name="file_unavailable">
+          <label class="form-check-label" for="unavailable">
+            Available in Library
+          </label>
+        </div>
+      </div>
+    </div>
+    
+    <button type="submit" class="btn btn-primary mr-2">Search</button>
+    <a href="/library" class="btn btn-primary">Clear Searches</a>
+
+    
+    
+  </form>
+  <a href="{% url 'create_book' %}"><button class="btn btn-primary">Add</button></a>
+  <hr />
+</div>
+
+
+<div class="container book-list-container mt-5 ">
+  <div class="book-list">
+<!-- {{author}} -->
+
+    {% for book in paginated %}
+    
+      <div class="container book-box">
+        <table class="table-main">
+          <thead>
+            <tr>
+              
+              <td class="item-cover ml-4"><img src="{{book.bookImage.url}}" alt="no image"></td>
+              <td class="details-container">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td class="book-caption-container">
+                        <a href="{% url 'book_preview' book.id book.bookTitle|slugify  %}"><h4 class="book-caption">{{book.bookTitle}}</h4></a>
+                        <a href="{% url 'update_book' book.id %}"><h4 class="book-caption">Edit Book</h4></a>
+                        <a href="{% url 'delete_book' book.id %}"><h4 class="book-caption">Delete Book</h4></a>
+                        <!-- {% for author in book.bookAuthor.all %}
+                        
+                          <a href="{% url 'book_preview' book.id author|slugify %}">{{author}}</a>
+                          {% if not forloop.last %}
+                            ,
+                          {% endif %}
+
+                        {% endfor %} -->
+
+
+                        {% if book.bookFile %}
+                          <h4 class="book-caption">Online Availability: Yes</h4> 
+                        {% else %}
+                          <h4 class="book-caption">Online Availability: No</h4> 
+                        {% endif %}
+
+                      </td>
+                      
+                    </tr>
+                    <tr>
+                      <td class="book-details-container">
+                          <div id="book-year" class="book-details">
+                            <div class="details-label">
+                              Year:
+                            </div>
+                            <div class="details-value">
+                              {{book.yearPublished}}
+                            </div>
+                          </div>
+                          <div id="book-category" class="book-details">
+                            <div class="details-label">
+                              Category: 
+                            </div>
+                            <div class="details-value">
+                                {% for category in book.bookCategory.all %}
+                        
+                                  <a href="#">{{category}}</a>
+                                  {% if not forloop.last %}
+                                    ,
+                                  {% endif %}
+
+                                {% endfor %}
+                            </div>
+                          
+                          </div>
+                          <div id="book-ISBN" class="book-details">
+                            <div class="details-label">
+                              ISBN:
+                            </div>
+                            <div class="details-value">
+                              {{book.isbn}}
+                            </div>
+                          </div>
+                          <div class="book-details">
+                            <div class="details-label">
+                              Pages: 
+                            </div>
+                            <div class="details-value">
+                              {{book.pages}}
+                            </div>
+                          </div>
+                          {% if book.bookTags.all %}
+                          <div class="book-details">
+                            <div class="details-label">
+                              Tags: 
+                            </div>
+                            <div class="details-value">
+                              {% if book.bookTags.all %}
+                              {% for tags in book.bookTags.all %}
+                        
+                                <a href="#">{{tags}}</a>
+                                {% if not forloop.last %}
+                                  ,
+                                {% endif %}
+
+                              {% endfor %}
+                              {% endif%}
+                            </div>
+                          </div>
+                          {% else %}
+                           
+                          {% endif %}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    {% endfor %}
+
+  </div>
+</div>
+
+
+<!-- Pagination -->
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+
+
+
+    {% if paginated.has_previous %}
+    <a class="btn btn-outline-info" href="{% my_url 1 'page' request.GET.urlencode %}"><<</a>
+
+    {% endif %}
+
+    {% for num in paginated.paginator.page_range %}
+      {% if paginated.number == num%}
+      <a class="btn btn-info" href="{% my_url num 'page' request.GET.urlencode %}">{{num}}</a>
+      {% elif num > paginated.number|add:'-3' and num < paginated.number|add:'3'%}
+      <a class="btn btn-outline-info" href="{% my_url num 'page' request.GET.urlencode %}">{{num}}</a>
+      {% endif%}
+
+    {% endfor %}
+
+    {% if paginated.has_next %}
+
+    <a class="btn btn-outline-info"  href="{% my_url paginated.paginator.num_pages 'page' request.GET.urlencode %}">>></a>
+    {% endif %}
+
+
+  </ul>
+</nav>
+
+
+    
+{% endblock %}

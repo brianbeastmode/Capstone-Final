@@ -1,0 +1,622 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+
+html, body {
+	height: 100%;
+  width: 100%;
+	font-family: 'Poppins', sans-serif;
+}
+
+.top-navbar {
+	height:  2rem;
+	background-color: #800000!important;
+  width: 100%;
+  margin: auto;
+  text-align: center;
+  line-height: 1rem;
+
+}
+
+.contacts {
+  margin-right: 2rem;
+  font-size: .8rem;
+  color: rgba(255, 255, 255, 0.918)!important;
+}
+
+.user {
+  font-size: .8rem;
+  color: rgb(255, 255, 255)!important;
+  margin-left: 1rem;
+}
+
+.bottom-navbar {
+  padding: .8rem;
+  margin-bottom: 2rem;
+
+}
+
+.nav-link {
+	margin-right: 2rem;
+	margin-left: 2rem;
+  color: #4f4f4f!important;
+  text-transform: uppercase;
+}
+
+.nav-link:hover {
+	color: #8B0000!important;
+}
+
+.active{
+	background: #ECECEC;
+	color: #8B0000!important;
+}
+
+/* start of index css */
+/*  carousel */
+.carousel-item {
+  height: 88vh;
+  min-height: 300px;
+  background: no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.carousel-image {
+  opacity: 0.3;
+}
+
+.carousel-caption {
+  position: absolute;
+  top: 15rem;
+}
+
+.carousel-caption h5 {
+  font-size: 45px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-top: 25px;
+}
+
+.carousel-caption p {
+  width: 75%;
+  margin: auto;
+  font-size: 18px;
+  line-height: 1.9;
+}
+/* carousel end */
+
+/* start of feature css */
+.start-reading {
+  color: #8B0000;
+}
+
+
+.center {
+  margin: auto;
+}
+
+#book-feature {
+  background: #4f4f4f!important;
+}
+
+
+/* .btn-primary {
+  color: #fff;
+  background-color: #007b5e;
+  border-color: #007b5e;
+} */
+
+/* #team .card {
+  border: none;
+} */
+
+.feature-card{
+  padding:0;
+}
+
+.card-body{
+  padding: 0rem;
+}
+
+.image-flip:hover .backside,
+.image-flip.hover .backside {
+  -webkit-transform: rotateY(0deg);
+  -moz-transform: rotateY(0deg);
+  -o-transform: rotateY(0deg);
+  -ms-transform: rotateY(0deg);
+  transform: rotateY(0deg);
+  border-radius: .25rem;
+}
+
+.image-flip:hover .frontside,
+.image-flip.hover .frontside {
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  -o-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+
+.mainflip {
+  -webkit-transition: 1s;
+  -webkit-transform-style: preserve-3d;
+  -ms-transition: 1s;
+  -moz-transition: 1s;
+  -moz-transform: perspective(1000px);
+  -moz-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  transition: 1s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.frontside {
+  position: relative;
+  -webkit-transform: rotateY(0deg);
+  -ms-transform: rotateY(0deg);
+  z-index: 2;
+}
+
+.backside {
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-transform: rotateY(-180deg);
+  -moz-transform: rotateY(-180deg);
+  -o-transform: rotateY(-180deg);
+  -ms-transform: rotateY(-180deg);
+  transform: rotateY(-180deg);
+}
+
+.frontside,
+.backside {
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transition: 1s;
+  -webkit-transform-style: preserve-3d;
+  -moz-transition: 1s;
+  -moz-transform-style: preserve-3d;
+  -o-transition: 1s;
+  -o-transform-style: preserve-3d;
+  -ms-transition: 1s;
+  -ms-transform-style: preserve-3d;
+  transition: 1s;
+  transform-style: preserve-3d;
+}
+
+.frontside .card,
+.backside .card {
+  min-height: 15rem;
+  min-width: 12rem;
+}
+
+.backside .card a {
+  font-size: 1rem;
+  color: #007b5e !important;
+}
+
+.frontside .card .card-title,
+.backside .card .card-title {
+  color: #8B0000 !important;
+}
+
+.frontside .card .card-body img {
+  width: 12rem;
+  height: 15rem;
+
+}
+
+
+/* end of feature css */
+
+/* footer */
+footer {
+  background: #B22222;
+  background: -webkit-linear-gradient(59deg, #9b3c63, #800f0f);
+  background: linear-gradient(59deg, #7e0d0d, #550707);
+  color: white;
+}
+
+footer a {
+  color: #fff;
+  font-size: 14px;
+  transition-duration: 0.2s;
+}
+
+footer a:hover {
+  color: #FA944B;
+  text-decoration: none;
+}
+
+.copy {
+  font-size: 12px;
+  padding: 10px;
+  border-top: 1px solid #FFFFFF;
+}
+
+.footer-middle {
+  padding-top: 2em;
+  color: white;
+}
+
+/* footer-social icons */
+ul.social-network {
+  list-style: none;
+  display: inline;
+  margin-left: 0 !important;
+  padding: 0;
+}
+
+ul.social-network li {
+  display: inline;
+  margin: 0 5px;
+}
+
+.social-network a.icoFacebook:hover {
+  background-color: #3B5998;
+}
+
+.social-network a.icoGoogle:hover {
+  background-color: #b30b0b;
+}
+
+.social-network a.icoTwitter:hover {
+  background-color: #007bb7;
+}
+
+.social-network a.icoTwitter:hover i,
+.social-network a.icoFacebook:hover i,
+.social-network a.icoGoogle:hover i {
+  color: #fff;
+}
+
+.social-network a.socialIcon:hover,
+.socialHoverClass {
+  color: #44BCDD;
+}
+
+.social-circle li a {
+  display: inline-block;
+  position: relative;
+  margin: 0 auto 0 auto;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  text-align: center;
+  width: 30px;
+  height: 30px;
+  font-size: 15px;
+}
+
+.social-circle li i {
+  margin: 0;
+  line-height: 30px;
+  text-align: center;
+}
+
+.social-circle li a:hover i,
+.triggeredHover {
+  -moz-transform: rotate(360deg);
+  -webkit-transform: rotate(360deg);
+  -ms--transform: rotate(360deg);
+  transform: rotate(360deg);
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  -ms-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+.social-circle i {
+  color: #595959;
+  -webkit-transition: all 0.8s;
+  -moz-transition: all 0.8s;
+  -o-transition: all 0.8s;
+  -ms-transition: all 0.8s;
+  transition: all 0.8s;
+}
+
+.social-network a {
+  background-color: #F9F9F9;
+}
+
+.footer-two h2{
+  margin-bottom: 1rem;
+}
+
+.footer-two :nth-child(1){
+  margin-bottom: .5rem;
+}
+/* end of footer-social icons */
+/* end of footer */
+
+
+
+
+/* library css */
+.book-list{
+  border: 1px solid #b4b4b4;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.book-box {
+  padding: 1rem;
+  border-bottom: 1px solid #b4b4b4;
+  
+}
+
+.details-container {
+  width: 90%;
+  padding-left: 1rem;
+  position:relative;
+}
+
+.book-caption-container {
+  position: absolute;
+  top:0;
+}
+
+.book-caption-container a{
+  text-decoration-line: underline;
+  color: black;
+}
+
+.book-caption-container a:hover{
+  color: #B22222!important;
+}
+
+.book-caption:nth-child(2){
+  font-style: italic;
+  color: #B22222!important;
+  
+}
+.book-caption {
+  font-size: 20px;
+}
+
+.book-details-container {
+  display: inline;
+  vertical-align: text-bottom;
+  position: absolute;
+  bottom: 0;
+  right: 0px;
+}
+
+.book-details {
+  display: inline;
+  vertical-align: bottom;
+  margin-left: 1rem;
+
+}
+
+
+.item-cover {
+  width: 7rem;
+  height: 10rem;
+}
+
+.item-cover img{
+  height: 100%;
+  width: 100%;
+  border-style: outset;
+}
+
+.details-label {
+  color: #4f4f4f;
+  display: inline;
+  
+}
+
+.details-value {
+  display: inline;
+  font-weight: bold;
+}
+/* end of library css */
+
+
+/* book preview css */
+
+.preview-container {
+  width: 55%;
+  margin: auto;
+  margin-top: 5rem;
+}
+
+.nav-title {
+  margin-left: 0;
+  margin-bottom: 1rem;
+}
+
+.nav-title a{
+  text-decoration: underline;
+  color: #4f4f4f;
+  font-size: 1rem;
+  padding-right: 1rem;
+  
+}
+
+.nav-title a:hover{
+  color: #B22222;
+  
+}
+.nav-title h1{
+  font-size: 1rem;
+  color: #4f4f4f;
+  padding-left: 1rem;
+  line-height: 1.5;
+}
+
+.book-description-cover img{
+  width: 20rem;
+  height: 27rem;
+  border: solid gray 2px;
+  
+}
+
+.preview-book-description a{
+  color: #B22222;
+}
+
+#book-description-author {
+  font-size: x-large;
+  font-style: italic;
+  margin-bottom: 1.5rem;
+  color: #B22222;
+}
+
+#book-description-author:hover{
+  color: #000011;
+}
+
+#book-description-summary {
+  line-height: 1.6;
+}
+
+#book-description-summary #collapseExample.collapse:not(.show) {
+  display: block;
+  height: 17rem;
+  overflow: hidden;
+}
+
+#book-description-summary #collapseExample.collapsing {
+  height: 17rem;
+}
+
+#book-description-summary a.collapsed:after {
+  content: '+ Show More';
+  color:#B22222;
+  text-decoration-line: none;
+}
+
+#book-description-summary a:not(.collapsed):after {
+  content: '- Show Less';
+  color:#B22222;
+}
+
+.book-property-container{
+  column-count: 2;
+}
+
+.book-property-container h5{
+  font-size: 1rem;
+}
+
+.book-property-label {
+  display: inline-flex;
+  color: #4f4f4f;
+}
+
+.book-property-value {
+  display: inline-flex;
+  color: #4f4f4f;
+}
+
+.function-container {
+  margin-top: 1rem;
+}
+
+.read-button {
+  background-color: #8B0000;
+  border: none;
+}
+
+.read-button:hover{
+  background-color: #8B0000;
+}
+
+.read-button img{
+  height: 2rem;
+}
+/* end of book preview css */
+
+
+/* start of staff css */
+
+#container-staff-carousel {
+
+}
+#carousel-inner-staff {
+  height: 20rem;
+  width: 60%;
+  margin: auto;
+  background-color: black!important;
+
+}
+/* end of staff css */
+
+
+/*---Media Queries --*/
+@media (max-width: 992px) {
+
+}
+
+@media (max-width: 768px) {
+  
+
+}
+@media (max-width: 576px) {
+
+}
+
+
+
+/*---Firefox Bug Fix --*/
+.carousel-item {
+  transition: -webkit-transform 0.5s ease;
+  transition: transform 0.5s ease;
+  transition: transform 0.5s ease, -webkit-transform 0.5s ease;
+  -webkit-backface-visibility: visible;
+  backface-visibility: visible; 
+}
+
+.card-columns {
+  column-gap: 0;
+}
+.card {
+  margin-bottom:0!important;
+}
+/*
+Extra small (xs) devices (portrait phones, less than 576px)
+No media query since this is the default in Bootstrap
+
+Small (sm) devices (landscape phones, 576px and up)
+@media (min-width: 576px) { ... }
+
+Medium (md) devices (tablets, 768px and up)
+@media (min-width: 768px) { ... }
+
+Large (lg) devices (desktops, 992px and up)
+@media (min-width: 992px) { ... }
+
+Extra (xl) large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { ... }
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.frontside:hover {
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+}
+
+
+

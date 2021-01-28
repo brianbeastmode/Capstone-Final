@@ -1,0 +1,75 @@
+{% extends "base.html"%}
+{% load static %}
+
+
+
+{% block content%}
+  <!-- end of navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container bottom-navbar-container">
+      <a class="navbar-brand" href="/"><img src="{% static 'img/msu-banner.png' %}" height="40px"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"><span
+          class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Staff</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="services">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about">About</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- end of navbar -->
+
+<div class="container-staff-carousel">
+  <div id="carouselStaff" class="carousel slide" data-ride="carousel">
+    <div id="carousel-inner-staff"class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="card" style="width: 18rem;">
+          <img src="..." class="card-img-top" alt="...">
+          <div class="card-body">
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="card" style="width: 18rem;">
+          <img src="..." class="card-img-top" alt="...">
+          <div class="card-body">
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="card" style="width: 18rem;">
+          <img src="..." class="card-img-top" alt="...">
+          <div class="card-body">
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+        </div>
+      </div>
+
+      <ol class="carousel-indicators">
+        <li data-target="#carouselStaff" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselStaff" data-slide-to="1"></li>
+        <li data-target="#carouselStaff" data-slide-to="2"></li>
+      </ol>
+
+      
+    </div>
+
+    
+  </div>
+</div>
+
+
+{% endblock %}

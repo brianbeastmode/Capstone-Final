@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<!-- end of navbar -->
+<nav class="navbar bottom-navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container bottom-navbar-container">
+      <a class="navbar-brand" href="/"><img src="{% static 'img/msu-banner.png' %}" height="40px"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"><span
+          class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Staff</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+</nav>
+<!-- end of navbar -->
+<div class="container-fluid preview-container">
+  <div class="row nav-title" >
+    <a href="/library">Main</a>
+    <span>|</span>
+    <h1>{{book.bookTitle}}</h1>
+  </div>
+
+  <div class="row book-description">
+
+    <div class="container book-description-cover col-sm-4">
+      <img src="{{book.bookImage.url}}" alt="Book cover not found">
+    </div>
+    
+    <div class="col-sm-8 preview-book-description" style="overflow: hidden;">
+      <h1 id="book-description-title">{{book.bookTitle}}</h1>
+      {% for author in book.bookAuthor.all %}
+                        
+        <a href="{% url 'book_preview' book.id author|slugify %}">{{author}}</a>
+        {% if not forloop.last %}
+          ,
+        {% endif %}
+
+      {% endfor %}
+
+      
+      <div id="book-description-summary">
+        <p class="collapse" id="collapseExample" aria-expanded="false">
+          {{book.bookDescription}}
+        </p>
+        <a role="button" class="collapsed" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        </a>
+      </div>
+
+      <div class="book-property-container">
+        <div class="book-property">
+          <div class="book-property-label"><h5>Category:</h5></div>
+          {% for category in book.bookCategory.all %}
+                        
+            <a href="#">{{category}}</a>
+            {% if not forloop.last %}
+              ,
+            {% endif %}
+
+          {% endfor %}
+        </div>
+        <div class="book-property">
+          <div class="book-property-label"><h5>Year:</h5></div>
+          <div class="book-property-value"><h5>{{book.yearPublished}}</h5></div>
+        </div>
+        <div class="book-property">
+          <div class="book-property-label"><h5>ISBN:</h5></div>
+          <div class="book-property-value"><h5>{{book.isbn}}</h5></div>
+        </div>
+        <div class="book-property">
+          <div class="book-property-label"><h5>Pages:</h5></div>
+          <div class="book-property-value"><h5>{{book.pages}}</h5></div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+  <!-- if there is no bookFile, will enable read button if not wi disable -->
+  {% if book.bookFile %}
+    <div class="function-container">
+      <a href="{% url 'render_book' book.id book.bookTitle %}" target="_blank"> 
+        <button type="button" class="btn btn-primary read-button">
+          <img src="{%static 'img/read-icon.png' %}" alt="Image not found">
+          Read Now
+        </button>
+      </a>
+    </div>
+  {% else %}
+    <h1>butngi na dri</h1>
+  {% endif %}
+
+  {{review}}
+
+  <br>
+  <div class="card">
+    <div class="card-body">
+      <ul>
+        {% for review in review %}
+
+          <li>{{review.user.get_full_name}} = {{review.comment}} ::: {{review.rating}}</li>
+
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+
+  <br>
+  <div class="card">
+    <div class="card-body">
+      <h3 class="text-center">Reviews</h3>
+
+      <form action="{% url 'review' book.id %}" method="POST">
+        {% csrf_token %}
+        <label for="comment">Review</label>
+        <textarea class="form-control" name="comment" cols="30" rows="10"></textarea>
+
+        <label for="rating">Rating</label>
+        <input class="form-control" type="number" name="rating">
+
+        <input type="submit" value="Submit">
+      </form>
+      
+    </div>
+  </div>
+
+
+</div>
+
+{% endblock %}
