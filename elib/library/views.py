@@ -89,7 +89,7 @@ def library(request): #filter and display books
 
         context['paginated'] = response
 
-        return render(request, "library.html", context)
+        return render(request, "html/library.html", context)
     else:
         return render(request, "login.html")
 
