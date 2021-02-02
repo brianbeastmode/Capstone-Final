@@ -3,7 +3,7 @@ from django.contrib.auth import logout
 from django.db.models import Q
 from .models import Book, Author, Category, Tags, Review
 from .forms import BookForm, ReviewForm, AuthorForm
-from .filters import BookFilter, AuthorFilter
+from .filters import BookFilter, AuthorFilter, CategoryFilter, TagsFilter
 from .decorators import unauthenticated_user, authenticated_user
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -36,14 +36,19 @@ def index(request):
     return render(request, "html/index.html", context)
 
 def library(request): #filter and display books
+    categories = Category.objects.all()
+    tags = Tags.objects.all()
     qs = Book.objects.all().order_by('bookTitle')
-    context = {}
+    context = {
+        'category': categories,
+        'tags': tags,
+    }
 
     if request.user.is_authenticated:
         all_query = request.GET.get('all_query')
         title_author_query = request.GET.get('title_author')
         category_query = request.GET.get('category')
-        isbn_query = request.GET.get('isbn')
+        tags_query = request.GET.get('tags')
         min_year_query = request.GET.get('min_year')
         max_year_query = request.GET.get('max_year')
         file_available_query = request.GET.get('file_available')
@@ -51,17 +56,17 @@ def library(request): #filter and display books
         
         
         if is_query_valid(all_query):
-            qs = qs.filter(Q(bookTitle__icontains=all_query) | Q(bookAuthor__authorName__icontains=all_query)
-            | Q(bookCategory__icontains=all_query) | Q(isbn__iexact=all_query) | Q(yearPublished__iexact=all_query)).distinct()
+            qs = qs.filter(Q(bookTitle__icontains=all_query) | Q(bookAuthor__authorName__icontains=all_query) | Q(isbn__iexact=all_query) 
+            | Q(yearPublished__iexact=all_query)).distinct()
             
         if is_query_valid(title_author_query):
             qs = qs.filter(Q(bookTitle__icontains=title_author_query) | Q(bookAuthor__authorName__icontains=title_author_query)).distinct()
 
         if is_query_valid(category_query):
-            qs = qs.filter(bookCategory__icontains=category_query)
+            qs = qs.filter(bookCategory__categoryName__icontains=category_query)
         
-        if is_query_valid(isbn_query):
-            qs = qs.filter(isbn__iexact=isbn_query)
+        if is_query_valid(tags_query):
+            qs = qs.filter(bookTags__tags__icontains=tags_query)
 
         if is_query_valid(min_year_query):
             qs = qs.filter(yearPublished__gte=min_year_query)
@@ -126,14 +131,14 @@ def book(request, bookTitle, id):
     book = Book.objects.get(bookTitle=bookTitle.replace('-',' '))
     author = Author.objects.all()
     review = Review.objects.filter(book=id)
-    # review = Review.objects.filter(book=id)
+
     context = {
         'book': book,
         'author': author,
         'review': review
     }
     if request.user.is_authenticated:
-        return render(request, "book.html", context)
+        return render(request, "html/book.html", context)
     else:
         return render(request, "login.html")
 
@@ -145,7 +150,6 @@ def reviewBook(request, id):
         if form.is_valid():
             data = form.save(commit=False)
             data.comment = request.POST["comment"]
-            data.rating = request.POST["rating"]
             data.user = request.user
             data.book = book
             data.save()
@@ -212,7 +216,6 @@ def addAuthor(request):
     form = AuthorForm()
 
     if request.method == "POST":
-        print(request.POST)
         form = AuthorForm(request.POST or None)
         if form.is_valid():
             print(form)

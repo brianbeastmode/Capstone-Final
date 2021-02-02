@@ -1,0 +1,250 @@
+{% extends 'html/base.html' %}
+{% load sizify  %}
+
+{% block content %}
+
+        <!-- Start: Page Banner -->
+        <section class="page-banner services-banner">
+            <div class="container">
+                <div class="banner-header">
+                    <h2>Books & Media Listing</h2>
+                    <span class="underline center"></span>
+                    <p class="lead">Proin ac eros pellentesque dolor pharetra tempo.</p>
+                </div>
+                <div class="breadcrumb">
+                    <ul>
+                        <li><a href="{% url 'index' %}">Home</a></li>
+                        <li><a href="{% url 'library' %}">Books</a></li>
+                        <li>{{book.bookTitle}}</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <!-- End: Page Banner -->
+
+        <!-- Start: Products Section -->
+        <div id="content" class="site-content">
+            <div id="primary" class="content-area">
+                <main id="main" class="site-main">
+                    <div class="booksmedia-detail-main">
+                        <div class="container">
+                            <div class="booksmedia-detail-box">
+                                <div class="detailed-box">
+                                    <div class="col-xs-12 col-sm-5 col-md-3">
+                                        <div class="post-thumbnail">
+                                            <img id="featured-image" src="{{book.bookImage.url}}" alt="Book Image">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-7 col-md-9">
+                                        <div class="post-center-content">
+                                            <h2>{{book.bookTitle}}</h2>
+                                            <p style="display: inline-flex;"><strong>Author:</strong></p>
+                                            {% for author in book.bookAuthor.all %}                 
+                                                <p style="display: inline-flex;">{{author}}</p>
+                                                    {% if not forloop.last %}
+                                                        ,
+                                                    {% endif %}                         
+                                            {% endfor %}
+
+                                            <p><strong>ISBN:</strong> {{book.isbn}}</p>
+                                            <p><strong>Year Published:</strong> {{book.yearPublished}}</p>
+                                            <p><strong>Page length:</strong> {{book.pages}} pages.</p>
+                                            {% if book.bookFile %}
+                                                <p><strong>Size:</strong> {{book.bookFile.size|sizify}}</p>
+                                            {% else%}
+                                            {% endif %}
+                                            <p style="display: inline-flex;"><strong>Category:</strong></p>
+                                            {% for category in book.bookCategory.all %}                        
+                                                <p style="display: inline-flex;">{{category}}</p>
+                                                    {% if not forloop.last %}
+                                                        ,
+                                                    {% endif %}                         
+                                            {% endfor %}
+
+                                            <div></div>
+                                            <p style="display:inline-block"><strong>Tags:</strong></p>
+                                            {% for tags in book.bookTags.all %}                        
+                                                <p style="display: inline-flex;">{{tags}}</p>
+                                                    {% if not forloop.last %}
+                                                        ,
+                                                    {% endif %}                         
+                                            {% endfor %}
+
+                                            {% if book.bookFile %}
+                                                <p><strong>Available Online:</strong> Yes</p>
+                                            {% else %}
+                                                <p><strong>Available Online:</strong> No</p>
+                                            {% endif %}
+                                            <br>
+
+                                            <div class="actions text-align-start">
+                                                <ul>
+                                                    <li>
+                                                        <a href="{% url 'render_book' book.id book.bookTitle %}" target="_blank" data-toggle="blog-tags" data-placement="top" title="" data-original-title="Add To Cart">
+                                                            <i class="fa fa-shopping-cart"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" target="_blank" data-toggle="blog-tags" data-placement="top" title="" data-original-title="Like">
+                                                            <i class="fa fa-heart"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" target="_blank" data-toggle="blog-tags" data-placement="top" title="" data-original-title="Mail">
+                                                            <i class="fa fa-envelope"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" target="_blank" data-toggle="blog-tags" data-placement="top" title="" data-original-title="Search">
+                                                            <i class="fa fa-search"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" target="_blank" data-toggle="blog-tags" data-placement="top" title="" data-original-title="Print">
+                                                            <i class="fa fa-print"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" target="_blank" data-toggle="blog-tags" data-placement="top" title="" data-original-title="Print">
+                                                            <i class="fa fa-share-alt"></i>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <p><strong>Summary:</strong> {{book.bookDescription}}</p>
+
+                                <div class="table-tabs" id="responsiveTabs">
+                                    <ul class="nav nav-tabs">
+                                        <li class="active"><b class="arrow-up"></b><a data-toggle="tab" href="#sectionB">Reviews ({{review|length}})</a></li>
+                                        <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionA">Copies: 05</a></li>
+                                        <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionC">Table of Contents</a></li>
+                                        <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionD">Novelist Recommendations</a></li> 
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div id="sectionA" class="tab-pane fade in active">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Library Name</th>
+                                                        <th>Shelf Number</th>
+                                                        <th>Material Type</th>
+                                                        <th>Status </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Oak Park Public Library Main Branch</td>
+                                                        <td>B PURMORT</td>
+                                                        <td>Book</td>
+                                                        <td>In Processing</td>                                                                    
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Bedford Park Public Library District</td>
+                                                        <td>616.99 PUR</td>
+                                                        <td>Book</td>
+                                                        <td>Due 8/24/16</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Blue Island Public Library</td>
+                                                        <td>BIO PUR</td>
+                                                        <td>eBook</td>
+                                                        <td>Due 8/24/16</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Bridgeview Public Library</td>
+                                                        <td>B PUR</td>
+                                                        <td>DVD</td>
+                                                        <td>In Processing</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Eisenhower Public Library District</td>
+                                                        <td>616.994 PUR</td>
+                                                        <td>Magazine</td>
+                                                        <td>Checked In</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Forest Park Public Library</td>
+                                                        <td>BIO PURMORT</td>
+                                                        <td>Magazine</td>
+                                                        <td>Checked In</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Hinsdale Public Library</td>
+                                                        <td>B PUR</td>
+                                                        <td>Audio</td>
+                                                        <td>Checked In</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Oak Park Public Library Maze Branch</td>
+                                                        <td>616.99 PUR</td>
+                                                        <td>Audio</td>
+                                                        <td>Due 9/10/16</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>River Grove Public Library District</td>
+                                                        <td>616.994 PURMORT</td>
+                                                        <td>Book</td>
+                                                        <td>Due 9/10/16</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div id="sectionB" class="tab-pane fade in">
+                                            <div>
+                                                {% if review %}
+                                                    {% for review in review %}
+                                                    
+                                                    <div>
+                                                        <h5>- {{review.user.get_full_name}}</h5>
+                                                        <p>"{{review.comment}}"</p>
+                                                    </div>
+                                                    {% endfor %}
+                                                {% else %}
+                                                    <h5>No reviews yet.</h5>
+                                                {% endif %}
+                                            </div>
+                                            <div>
+                                                <div class="card">
+                                                    <div class="card-body">                                                
+                                                      <form action="{% url 'review' book.id %}" method="POST">
+                                                        {% csrf_token %}
+                                                        <label for="comment">Write a Review:</label>
+                                                        <textarea class="form-control" name="comment" cols="30" rows="10"></textarea>
+                                                        <input class="form-control" type="submit" value="Submit">
+                                                      </form>                                                   
+                                                    </div>
+                                                  </div>
+                                            </div>
+                                        </div>
+                                        <div id="sectionC" class="tab-pane fade in">
+                                            <h5>Lorem Ipsum Dolor</h5>
+                                            <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.</p>
+                                        </div>
+                                        <div id="sectionD" class="tab-pane fade in">
+                                            <h5>Lorem Ipsum Dolor</h5>
+                                            <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.</p>
+                                        </div>                                                    
+                                        <div id="sectionE" class="tab-pane fade in">
+                                            <h5>Lorem Ipsum Dolor</h5>
+                                            <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.</p>
+                                        </div>                                                    
+                                        <div id="sectionF" class="tab-pane fade in">
+                                            <h5>Lorem Ipsum Dolor</h5>
+                                            <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+        <!-- End: Products Section -->
+    
+{% endblock %}

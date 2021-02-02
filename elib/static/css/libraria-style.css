@@ -9567,7 +9567,7 @@ a:focus {
 }
 #featured-image {
   height: 413px;
-  width: 263px;
+  width: inherit;
 }
 
 @media (max-width: 1024px) {
@@ -13666,11 +13666,7 @@ category-filter .category-list .category-item figcaption.bg-yellow .diamond {
   background-image: url(images/page-banners/product-banner.jpg);
 }
 .page-banner.services-banner {
-<<<<<<< HEAD
   background-image: url(../img/background2.jpeg);
-=======
-  background-image: url(images/page-banners/services-banner.jpg);
->>>>>>> 42f342d2d50609fa10d0044021bd575d50429430
 }
 .page-banner.signin-banner {
   background-image: url(images/page-banners/signin-banner.jpg);
@@ -17068,12 +17064,10 @@ category-filter .category-list .category-item figcaption.bg-yellow .diamond {
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
   -webkit-transition: all 0.3s ease-in-out;
-<<<<<<< HEAD
   height: 523.641px;
   width: 349.094px;
-=======
->>>>>>> 42f342d2d50609fa10d0044021bd575d50429430
 }
+
 .booksmedia-fullwidth ul li figure figcaption {
   background-color: #fff;
   cursor: pointer;
@@ -17174,6 +17168,12 @@ category-filter .category-list .category-item figcaption.bg-yellow .diamond {
   -webkit-box-shadow: 0 0 14px 0 rgba(0, 0, 0, 0.07);
   -moz-box-shadow: 0 0 14px 0 rgba(0, 0, 0, 0.07);
   box-shadow: 0 0 14px 0 rgba(0, 0, 0, 0.07);
+}
+
+.br {
+  position:absolute;
+  bottom: 0;
+  width: 100%;
 }
 .actions ul {
   list-style: none;
@@ -17277,7 +17277,7 @@ category-filter .category-list .category-item figcaption.bg-yellow .diamond {
 .detailed-box .post-thumbnail {
   display: inline-block;
   float: left;
-  margin: 0 -15px;
+  margin: 8px  -15px 0 0;
   position: relative;
   padding: 0;
   vertical-align: top;
@@ -17305,8 +17305,8 @@ category-filter .category-list .category-item figcaption.bg-yellow .diamond {
   -moz-box-shadow: 0 0 14px 0 rgba(0, 0, 0, 0.07);
   box-shadow: 0 0 14px 0 rgba(0, 0, 0, 0.07);
   display: inline-block;
-  margin: 0 -15px;
   padding: 34px 15px 0 30px;
+  width: 100%;
 }
 @media (max-width: 767px) {
   .detailed-box .post-center-content {
@@ -17320,6 +17320,7 @@ category-filter .category-list .category-item figcaption.bg-yellow .diamond {
     padding: 57px 15px 0 35.5px;
   }
 }
+
 .detailed-box .post-center-content h2 {
   color: #282828;
   margin-bottom: 13px;
@@ -19255,10 +19256,10 @@ category-filter .category-list .category-item figcaption.bg-yellow .diamond {
 .bx-wrapper .bx-pager.bx-default-pager a.active {
   background: #ff7236;
 }
-<<<<<<< HEAD
 a.disabled {
   pointer-events: none;
   cursor: default;
 }
-=======
->>>>>>> 42f342d2d50609fa10d0044021bd575d50429430
+.text-align-start {
+  text-align: start;
+}

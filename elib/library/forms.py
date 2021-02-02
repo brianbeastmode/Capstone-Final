@@ -9,7 +9,7 @@ class BookForm(ModelForm):
 class ReviewForm(ModelForm):
     class Meta:
         model = Review
-        fields = ['comment', 'rating']
+        fields = ['comment']
 
 class AuthorForm(ModelForm):
     class Meta:

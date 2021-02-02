@@ -84,7 +84,7 @@
                                 <div class="navbar-collapse hidden-sm hidden-xs">
                                     <ul class="nav navbar-nav">
                                         <li class="dropdown active">
-                                            <a data-toggle="dropdown" class="dropdown-toggle disabled" href="index-2.html">Home</a>
+                                            <a data-toggle="dropdown" class="dropdown-toggle disabled" href="index-2.html"><strong>Home</strong></a>
                                             <ul class="dropdown-menu">
                                                 <li><a href="index-2.html">Home V1</a></li>
                                                 <li><a href="home-v2.html">Home V2</a></li>
@@ -92,9 +92,9 @@
                                             </ul>
                                         </li>
                                         <li class="dropdown">
-                                            <a data-toggle="dropdown" class="dropdown-toggle disabled" href="books-media-list-view.html">Books &amp; Media</a>
+                                            <a data-toggle="dropdown" class="dropdown-toggle disabled" href="{% url 'library' %}">Books</a>
                                             <ul class="dropdown-menu">
-                                                <li><a href="books-media-list-view.html">Books &amp; Media List View</a></li>
+                                                <li><a href="{% url 'library' %}">Books &amp; Media List View</a></li>
                                                 <li><a href="books-media-gird-view-v1.html">Books &amp; Media Grid View V1</a></li>
                                                 <li><a href="books-media-gird-view-v2.html">Books &amp; Media Grid View V2</a></li>
                                                 <li><a href="books-media-detail-v1.html">Books &amp; Media Detail V1</a></li>
@@ -327,6 +327,7 @@
                         <span class="underline center"></span>
                         <p class="lead">The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.</p>
                     </div>
+                    
                     <div id="category-filter">
                         <ul class="category-list">
                             {% for book in books %}

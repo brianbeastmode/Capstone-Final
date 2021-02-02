@@ -11,12 +11,18 @@ class Author(models.Model):
 class Category(models.Model):
     categoryName = models.CharField(max_length=20)
 
+    class Meta: 
+        verbose_name_plural = "Categories"
+
     def __str__(self):
         return self.categoryName
         
 class Tags(models.Model):
     tags = models.CharField(max_length=20)
 
+    class Meta: 
+        verbose_name_plural = "Tags"
+        
     def __str__(self):
         return self.tags
 
